@@ -1,0 +1,102 @@
+2022-11-03 17:07:24.874  INFO 18496 --- [restartedMain] com.ymx.viewlog.ViewlogApplication       : Starting ViewlogApplication using Java 11.0.2 on DESKTOP-1BI7C0V with PID 18496 (D:\Project\viewlog\target\classes started by user in D:\Project\viewlog)
+2022-11-03 17:07:24.875  INFO 18496 --- [restartedMain] com.ymx.viewlog.ViewlogApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-11-03 17:07:25.023  INFO 18496 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-11-03 17:07:25.026  INFO 18496 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 JPA repository interfaces.
+2022-11-03 17:07:25.118  INFO 18496 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1000 (http)
+2022-11-03 17:07:25.120  INFO 18496 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-03 17:07:25.121  INFO 18496 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-03 17:07:25.149  INFO 18496 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-03 17:07:25.150  INFO 18496 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 271 ms
+2022-11-03 17:07:25.161  INFO 18496 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2022-11-03 17:07:25.176  INFO 18496 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2022-11-03 17:07:25.176  INFO 18496 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:./data/sample'
+2022-11-03 17:07:25.203  INFO 18496 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-03 17:07:25.209  INFO 18496 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-11-03 17:07:25.234  INFO 18496 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-03 17:07:25.235  INFO 18496 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-03 17:07:25.258  WARN 18496 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-03 17:07:25.298  INFO 18496 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-11-03 17:07:25.340  INFO 18496 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-03 17:07:25.352  INFO 18496 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1000 (http) with context path ''
+2022-11-03 17:07:25.356  INFO 18496 --- [restartedMain] com.ymx.viewlog.ViewlogApplication       : Started ViewlogApplication in 0.521 seconds (JVM running for 49.97)
+2022-11-03 17:07:25.366  INFO 18496 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-11-03 17:07:39.506  INFO 17340 --- [restartedMain] com.ymx.viewlog.ViewlogApplication       : Starting ViewlogApplication using Java 11.0.2 on DESKTOP-1BI7C0V with PID 17340 (D:\Project\viewlog\target\classes started by user in D:\Project\viewlog)
+2022-11-03 17:07:39.508  INFO 17340 --- [restartedMain] com.ymx.viewlog.ViewlogApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-11-03 17:07:39.718  INFO 17340 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-11-03 17:07:39.719  INFO 17340 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-11-03 17:07:40.232  INFO 17340 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-11-03 17:07:40.244  INFO 17340 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2022-11-03 17:07:40.940  INFO 17340 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1000 (http)
+2022-11-03 17:07:40.952  INFO 17340 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-03 17:07:40.952  INFO 17340 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-03 17:07:41.042  INFO 17340 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-03 17:07:41.042  INFO 17340 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1322 ms
+2022-11-03 17:07:41.071  INFO 17340 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-03 17:07:41.306  INFO 17340 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-03 17:07:41.321  INFO 17340 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:./data/sample'
+2022-11-03 17:07:41.497  INFO 17340 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-03 17:07:41.542  INFO 17340 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-03 17:07:41.701  INFO 17340 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-03 17:07:41.818  INFO 17340 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-11-03 17:07:42.302  INFO 17340 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-03 17:07:42.309  INFO 17340 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-03 17:07:42.355  WARN 17340 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-03 17:07:42.503  INFO 17340 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-11-03 17:07:42.719  INFO 17340 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-03 17:07:42.763  INFO 17340 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1000 (http) with context path ''
+2022-11-03 17:07:42.781  INFO 17340 --- [restartedMain] com.ymx.viewlog.ViewlogApplication       : Started ViewlogApplication in 3.665 seconds (JVM running for 4.17)
+2022-11-03 17:11:44.652  INFO 17340 --- [http-nio-1000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-03 17:11:44.653  INFO 17340 --- [http-nio-1000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-03 17:11:44.654  INFO 17340 --- [http-nio-1000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-03 17:30:45.699  INFO 14312 --- [restartedMain] com.ymx.viewlog.ViewlogApplication       : Starting ViewlogApplication using Java 11.0.2 on DESKTOP-1BI7C0V with PID 14312 (D:\Project\viewlog\target\classes started by user in D:\Project\viewlog)
+2022-11-03 17:30:45.701  INFO 14312 --- [restartedMain] com.ymx.viewlog.ViewlogApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-11-03 17:30:45.920  INFO 14312 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-11-03 17:30:45.921  INFO 14312 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-11-03 17:30:46.380  INFO 14312 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-11-03 17:30:46.392  INFO 14312 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2022-11-03 17:30:47.091  INFO 14312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1000 (http)
+2022-11-03 17:30:47.102  INFO 14312 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-03 17:30:47.103  INFO 14312 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-03 17:30:47.196  INFO 14312 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-03 17:30:47.197  INFO 14312 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1275 ms
+2022-11-03 17:30:47.226  INFO 14312 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-03 17:30:47.453  INFO 14312 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-03 17:30:47.466  INFO 14312 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:./data/sample'
+2022-11-03 17:30:47.629  INFO 14312 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-03 17:30:47.676  INFO 14312 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-03 17:30:47.833  INFO 14312 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-03 17:30:47.956  INFO 14312 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-11-03 17:30:48.429  INFO 14312 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-03 17:30:48.437  INFO 14312 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-03 17:30:48.480  WARN 14312 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-03 17:30:48.620  INFO 14312 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-11-03 17:30:48.799  INFO 14312 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-03 17:30:48.835  INFO 14312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1000 (http) with context path ''
+2022-11-03 17:30:48.848  INFO 14312 --- [restartedMain] com.ymx.viewlog.ViewlogApplication       : Started ViewlogApplication in 3.527 seconds (JVM running for 4.06)
+2022-11-03 17:37:05.761  INFO 14312 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2022-11-03 17:37:05.930  INFO 14312 --- [Thread-6] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-03 17:37:05.939  INFO 14312 --- [Thread-6] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-11-03 17:37:05.943  INFO 14312 --- [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-11-03 17:37:05.977  INFO 14312 --- [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-11-03 17:37:06.068  INFO 14312 --- [restartedMain] com.ymx.viewlog.ViewlogApplication       : Starting ViewlogApplication using Java 11.0.2 on DESKTOP-1BI7C0V with PID 14312 (D:\Project\viewlog\target\classes started by user in D:\Project\viewlog)
+2022-11-03 17:37:06.069  INFO 14312 --- [restartedMain] com.ymx.viewlog.ViewlogApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-11-03 17:37:06.212  INFO 14312 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-11-03 17:37:06.214  INFO 14312 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 JPA repository interfaces.
+2022-11-03 17:37:06.307  INFO 14312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1000 (http)
+2022-11-03 17:37:06.308  INFO 14312 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-03 17:37:06.309  INFO 14312 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-03 17:37:06.342  INFO 14312 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-03 17:37:06.343  INFO 14312 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 272 ms
+2022-11-03 17:37:06.353  INFO 14312 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2022-11-03 17:37:06.372  INFO 14312 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2022-11-03 17:37:06.372  INFO 14312 --- [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:./data/sample'
+2022-11-03 17:37:06.403  INFO 14312 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-03 17:37:06.411  INFO 14312 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-11-03 17:37:06.433  INFO 14312 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-03 17:37:06.434  INFO 14312 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-03 17:37:06.454  WARN 14312 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-03 17:37:06.497  INFO 14312 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2022-11-03 17:37:06.561  INFO 14312 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-03 17:37:06.569  INFO 14312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1000 (http) with context path ''
+2022-11-03 17:37:06.572  INFO 14312 --- [restartedMain] com.ymx.viewlog.ViewlogApplication       : Started ViewlogApplication in 0.534 seconds (JVM running for 381.784)
+2022-11-03 17:37:06.575  INFO 14312 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
