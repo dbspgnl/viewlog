@@ -34,3 +34,7 @@ build/
 
 ### Database ###
 /data
+
+### Log ###
+/logs
+/filePath_IS_UNDEFINED

@@ -1,49 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-	<springProperty name="filePath" source="logging.file.path" />
 
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-		<encoder>
-			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-		</encoder>
-	</appender>
+	<property name="logPath" value="./logs" />
+	<property name="fileName" value="test-log" />
+	<property name="maxHistory" value="7" />
+	<property name="maxFileSize" value="5KB" />
+	<property name="totalSizeCap" value="1GB" />
+	<property name="consolePattern" value="%-5level %d{yyyy-MM-dd HH:mm:ss}[%thread] %logger[%method:%line] - %msg%n" />
+	<property name="filePattern" value="%-4relative [%thread] %-5level %logger{35} - %msg%n" />
+	<property name="slackPattern" value="%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %-5level %logger{35} - %msg%n" />
+	<property name="slackHookUri" value="https://hooks.slack.com/services/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" />
 
-	<appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${filePath}/app.log</file>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${filePath}/app.%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
-			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<maxFileSize>1GB</maxFileSize>
-			</timeBasedFileNamingAndTriggeringPolicy>
-			<maxHistory>10</maxHistory>
-		</rollingPolicy>
-		<encoder>
-			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-		</encoder>
-	</appender>
+	<!-- Log Appender Module -->
+	<springProfile name="console-logging">
+		<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+		<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+			<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+				<pattern>${consolePattern}</pattern>
+			</encoder>
+		</appender>
+	</springProfile>
 
-	<appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${filePath}/error.log</file>
-		<filter class="ch.qos.logback.classic.filter.LevelFilter">
-			<level>ERROR</level>
-			<onMatch>ACCEPT</onMatch>
-			<onMismatch>DENY</onMismatch>
-		</filter>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${filePath}/error-%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
-			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				<maxFileSize>100MB</maxFileSize>
-			</timeBasedFileNamingAndTriggeringPolicy>
-			<maxHistory>30</maxHistory>
-		</rollingPolicy>
-		<encoder>
-			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-		</encoder>
-	</appender>
+	<springProfile name="file-logging">
+		<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<file>${logPath}/${fileName}.log</file>
+			<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+				<fileNamePattern>${logPath}/LOG_%d{yyyy-MM-dd}_${fileName}.log.%i.zip</fileNamePattern>
+				<maxHistory>${maxHistory}</maxHistory>
+				<maxFileSize>${maxFileSize}</maxFileSize>
+				<totalSizeCap>${totalSizeCap}</totalSizeCap>
+			</rollingPolicy>
+			<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+				<pattern>${filePattern}</pattern>
+			</encoder>
+		</appender>
+	</springProfile>
 
-	<root level="INFO">
-		<appender-ref ref="STDOUT" />
-		<appender-ref ref="APP_FILE" />
-		<appender-ref ref="ERROR_FILE" />
+	<springProfile name="message-logging">
+		<appender name="slack" class="com.github.maricn.logback.SlackAppender">
+			<layout class="ch.qos.logback.classic.PatternLayout">
+				<pattern>${slackPattern}</pattern>
+			</layout>
+			<webhookUri>${slackHookUri}</webhookUri>
+			<username>spring_boot</username>
+			<iconEmoji>:stuck_out_tongue_winking_eye:</iconEmoji>
+			<colorCoding>true</colorCoding>
+		</appender>
+	</springProfile>
+
+	<!-- Log Level Module -->
+	<springProfile name="high-level-logging">
+		<logger name="root" level="error" />
+		<logger name="org.springframework" level="error" />
+		<logger name="com.blog.tistory" level="warn" />
+	</springProfile>
+
+	<springProfile name="message-logging">
+		<logger name="root" level="error" />
+		<logger name="org.springframework" level="error" />
+		<logger name="com.blog.tistory" level="warn" />
+	</springProfile>
+
+	<springProfile name="low-level-logging">
+		<logger name="root" level="info" />
+		<logger name="org.springframework" level="info" />
+		<logger name="com.blog.tistory" level="debug" />
+	</springProfile>
+
+	<root level="info">
+		<springProfile name="console-logging">
+			<appender-ref ref="console" />
+		</springProfile>
+
+		<springProfile name="file-logging">
+			<appender-ref ref="file" />
+		</springProfile>
+
+		<!-- <springProfile name="message-logging">
+			<appender-ref ref="slack" />
+		</springProfile> -->
 	</root>
 </configuration>

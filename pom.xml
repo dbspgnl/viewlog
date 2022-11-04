@@ -62,6 +62,13 @@
 			<version>2.5.1</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.github.maricn/logback-slack-appender -->
+		<dependency>
+			<groupId>com.github.maricn</groupId>
+			<artifactId>logback-slack-appender</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
