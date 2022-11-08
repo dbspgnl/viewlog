@@ -11,6 +11,13 @@ public class ViewlogController {
 
     @RequestMapping("/")
     public String root(){
+        String profile = System.getProperty("spring.profiles.active");
+        System.out.println(">root>profile:"+profile);
+        log.trace("trace test");
+		log.debug("debug test");
+		log.info("info test");
+		log.warn("warn test");
+		log.error("error test");
         return "index";
     }
 
