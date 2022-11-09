@@ -1,5 +1,24 @@
-{"properties": [{
-	"name": "logging.slack.webhook-uri",
-	"type": "java.lang.String",
-	"description": "A description for 'logging.slack.webhook-uri'"
-}]}
+{
+	"properties": [
+		{
+			"name": "logging.slack.webhook-uri",
+			"type": "java.lang.String",
+			"description": "A description for 'logging.slack.webhook-uri'"
+		},
+		{
+			"name": "ssh.pw",
+			"type": "java.lang.String",
+			"description": "A description for 'ssh.pw'"
+		},
+		{
+			"name": "ssh.name",
+			"type": "java.lang.String",
+			"description": "A description for 'ssh.name'"
+		},
+		{
+			"name": "ssh.host",
+			"type": "java.lang.String",
+			"description": "A description for 'ssh.host'"
+		}
+	]
+}

@@ -3,6 +3,7 @@ package com.ymx.viewlog.service;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.jcraft.jsch.*;
@@ -10,13 +11,15 @@ import com.jcraft.jsch.*;
 @Service
 public class ViewlogService {
 
-	private String host = "{아이피}";
-	private String username = "{계정}";
-	private String password = "{비밀번호}";
+	@Value("${ssh.host}")
+	private String host = "";
+	@Value("${ssh.name}")
+	private String username = "";
+	@Value("${ssh.pw}")
+	private String password = "";
 	private int port = 22;
 
 	public String ssh(){
-
 		System.out.println(host);
 		System.out.println(username);
 		System.out.println(password);

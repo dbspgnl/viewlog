@@ -12,6 +12,10 @@ spring:
 logging:
   level:
     root: info
+ssh:
+  host: 127.0.0.1
+  name: user
+  pw: 1234
 ---
 spring.profiles.active: prod
 spring:
