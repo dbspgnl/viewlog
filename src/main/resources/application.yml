@@ -13,15 +13,16 @@ logging:
   level:
     root: info
 ---
-spring.profiles.active: dev
+spring.profiles.active: prod
 spring:
   profiles:
       group:
-        dev: 
+        prod: 
         - file-logging
         - slack-logging
 logging:
   level:
     root: info
   slack:
-    webhook-uri: "https://hooks.slack.com/services/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"
+    webhook-uri: "https://hooks.slack.com/services/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"
+---
