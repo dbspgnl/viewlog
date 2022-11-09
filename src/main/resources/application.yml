@@ -1,5 +1,5 @@
 # spring.config.use-legacy-processing: true
-spring.output.ansi.enabled: always
+# spring.output.ansi.enabled: always
 server:
   port: 1000
 ---

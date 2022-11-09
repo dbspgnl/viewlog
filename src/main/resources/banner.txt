@@ -1,0 +1,9 @@
+${AnsiColor.46} ,--.   ,--. ,--.                     ,--.                 
+${AnsiColor.82}  \  `.'  /  `--'  ,---.  ,--.   ,--. |  |  ,---.   ,---.  
+${AnsiColor.118}   \     /   ,--. | .-. : |  |.'.|  | |  | | .-. | | .-. | 
+${AnsiColor.154}    \   /    |  | \   --. |   .'.   | |  | ' '-' ' ' '-' ' 
+${AnsiColor.190}     `-'     `--'  `----' '--'   '--' `--'  `---'  .`-  /  
+${AnsiColor.190}                                                  `---'
+${AnsiColor.DEFAULT}=== Doosan AR Contents App  ===${AnsiColor.226}    
+${AnsiColor.BRIGHT_GREEN} ::   Spring Boot   ::${AnsiColor.DEFAULT}    (${spring-boot.version})
+${AnsiColor.BRIGHT_GREEN} :: Running Profile ::${AnsiColor.DEFAULT}    (PROFILE ${spring.profiles.active})

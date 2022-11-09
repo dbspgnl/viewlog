@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
     <springProperty name="SLACK_WEBHOOK_URI" source="logging.slack.webhook-uri"/>
-    <property name="LOG_PATH" value="../logs"/>
+    <property name="LOG_PATH" value="./logs"/>
     <timestamp key="dailyLog" datePattern="yyyy-MM-dd"/>
-    <property name="consolePattern" value="%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %-5level %logger{35} - %msg%n" />
+    <property name="consolePattern" value="[%green(%d{yyyy-MM-dd HH:mm:ss}:%-3relative)][%thread] %highlight(%-5level) %cyan(%logger{35}) - %msg%n" />
 
-    <!-- <springProfile name="console-logging">
+    <springProfile name="console-logging">
         <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
         <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
-    </springProfile> -->
+    </springProfile>
     <springProfile name="console-logging">
 		<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 				<encoder>
@@ -24,10 +24,12 @@
                 <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %-5level %logger{35} - %msg%n</pattern>
             </encoder>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                <fileNamePattern>${LOG_PATH}/logback/logback_${dailyLog}.%d\(.%i\).log</fileNamePattern>
+                <fileNamePattern>${LOG_PATH}/backup/logback_${dailyLog}.%d\(.%i\).log</fileNamePattern>
                 <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                     <maxFileSize>100MB</maxFileSize>
                 </timeBasedFileNamingAndTriggeringPolicy>
+                <maxHistory>1</maxHistory> <!-- 며칠 -->
+                <totalSizeCap>1GB</totalSizeCap>
             </rollingPolicy>
         </appender>
     </springProfile>
