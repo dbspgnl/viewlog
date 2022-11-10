@@ -18,8 +18,8 @@ import lombok.NoArgsConstructor;
 public class Server {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int index;
-	private int status;
+	private Integer index;
+	private Integer status;
 	private String name;
 	private String logPath;
 	private Timestamp date;

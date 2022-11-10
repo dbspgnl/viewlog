@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,7 +83,6 @@ public class ViewlogService {
             {	
 				sb.append(line);
 				if(line.contains("RDP-Tcp")){
-					// System.out.println("현재 원격 접속중입니다.");
 					result = true;
 					break;
 				}
@@ -140,6 +140,27 @@ public class ViewlogService {
 
     public Object getServerList() {
         return serverRepository.findAll();
+    }
+
+    public Object getConsoleLog(Integer index) {
+        System.out.println(index);
+        Optional<Server> serverOpt = serverRepository.findById(index);
+        if(!serverOpt.isPresent()) return null;
+        Server server = serverOpt.get();
+        String line = null;
+        List<String> list = new ArrayList<String>();
+        try {
+            jschSendCommand("mode con:cols=400 lines=20 & type "+server.getLogPath());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
+            while ((line = reader.readLine()) != null) 
+            {	
+                if(line.contains("[K")) continue;
+                list.add(line);
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return list;
     }
 	
 }
