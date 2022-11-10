@@ -2,19 +2,26 @@ package com.ymx.viewlog.service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jcraft.jsch.*;
+import com.ymx.viewlog.entity.Server;
+import com.ymx.viewlog.repository.ServerRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
 public class ViewlogService {
+
+    @Autowired
+    private ServerRepository serverRepository;
 
 	private String host = "";
 	private String username = "";
@@ -121,11 +128,18 @@ public class ViewlogService {
         System.out.println(formData);
         System.out.println(formData.get("name"));
         System.out.println(formData.get("path"));
+        Server server = Server.builder()
+            .status(0)
+            .name(formData.get("name"))
+            .logPath(formData.get("path"))
+            .date(new Timestamp(System.currentTimeMillis()))
+            .build();
+        serverRepository.save(server);
 		return null;
 	}
 
-    public Object getServer() {
-        return null;
+    public Object getServerList() {
+        return serverRepository.findAll();
     }
 	
 }

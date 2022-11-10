@@ -49,9 +49,9 @@ public class ViewlogController {
         return ResponseEntity.status(HttpStatus.OK).body(viewlogService.log());
     }
 
-    @RequestMapping("/getServer")
+    @RequestMapping("/getServerList")
     public ResponseEntity<?> getServer(){
-        return ResponseEntity.status(HttpStatus.OK).body(viewlogService.getServer());
+        return ResponseEntity.status(HttpStatus.OK).body(viewlogService.getServerList());
     }
 
     @RequestMapping("/addServer")
