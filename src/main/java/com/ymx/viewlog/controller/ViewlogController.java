@@ -1,9 +1,12 @@
 package com.ymx.viewlog.controller;
 
+import java.util.Map;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ymx.viewlog.service.ViewlogService;
 
@@ -40,9 +43,20 @@ public class ViewlogController {
         return ResponseEntity.status(HttpStatus.OK).body(viewlogService.ssh());
 
     }
+
     @RequestMapping("/log")
     public ResponseEntity<?> log(){
         return ResponseEntity.status(HttpStatus.OK).body(viewlogService.log());
+    }
+
+    @RequestMapping("/getServer")
+    public ResponseEntity<?> getServer(){
+        return ResponseEntity.status(HttpStatus.OK).body(viewlogService.getServer());
+    }
+
+    @RequestMapping("/addServer")
+    public ResponseEntity<?> addServer(@RequestParam Map<String, String> formData){
+        return ResponseEntity.status(HttpStatus.OK).body(viewlogService.addServer(formData));
     }
     
 }

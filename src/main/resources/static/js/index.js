@@ -5,17 +5,13 @@ function intervalFunction() {
 	isRemoting();
 }
 
-function addServer() {
-	alert("등록 아직 미구현")
-}
-
 function isRemoting() {
 	$.ajax({
 		url: "/isRemoting",
 		type: "GET",
 		success: function (result) {
 			if(result){
-				$("#isRemotingSpan").text("🟠108 서버 사용중...");
+				$("#isRemotingSpan").text("🔴108 서버 사용중...");
 			}
 			else{
 				$("#isRemotingSpan").text("🟢108 서버 사용가능");
@@ -23,7 +19,7 @@ function isRemoting() {
 		},
 		error: function (e) {
 			console.log(e.responseText);
-			$("#isRemotingSpan").text("🔴108 서버 접속불가");
+			$("#isRemotingSpan").text("❌108 서버 접속불가");
 		}
 	});  
 }
@@ -52,6 +48,19 @@ function log() {
 			});
 			let consoleUl = document.querySelector('#console_container');
 			consoleUl.scrollTop = consoleUl.scrollHeight;
+		},
+		error: function (e) {
+			console.log(e.responseText);
+		}
+	});  
+}
+
+function getServer() {
+	$.ajax({
+		url: "/getServer",
+		type: "GET",
+		success: function (result) {
+			console.log(result);
 		},
 		error: function (e) {
 			console.log(e.responseText);

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -114,6 +115,17 @@ public class ViewlogService {
             log.error(e.getMessage());
         }
         return list;
+    }
+
+	public Object addServer(Map<String, String> formData) {
+        System.out.println(formData);
+        System.out.println(formData.get("name"));
+        System.out.println(formData.get("path"));
+		return null;
+	}
+
+    public Object getServer() {
+        return null;
     }
 	
 }

@@ -23,7 +23,7 @@
                 <span id="isRemotingSpan">대기중</span>
             </div>
             <div class="col-1 text-end">
-                <button class="btn btn-primary" onclick="addServer()">등록</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">등록</button>
             </div>
         </div>
         <table class="table" style="vertical-align: middle;">
@@ -42,7 +42,7 @@
                     <td> <button class="btn btn-primary">새로고침</button></td>
                     <td> 
                         <button class="btn btn-secondary">시작</button>
-                        <button class="btn btn-secondary">설정</button>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#putModal">설정</button>
                     </td>
                 </tr>
             </tbody>
@@ -67,6 +67,8 @@
         <button class="btn btn-primary" onclick="isRemoting()">isRemoting</button>
         <button class="btn btn-primary" onclick="ssh()">ssh</button>
         <button class="btn btn-primary" onclick="log()">log</button>
+        <button class="btn btn-primary" onclick="getServer()">Server</button>
     </div>
+    <th:block aria-label="모달 영역" th:include="modal/modal"></th:block>
 </body>
 </html>

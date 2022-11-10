@@ -1,0 +1,87 @@
+<!-- Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="addModalLabel">서버 등록하기</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-borderless">
+					<tr>
+						<th>서버명</th>
+						<td class="form-group">
+							<input id="addInput1" class="form-control" type="text" placeholder="Batch_Server">
+						</td>
+					</tr>
+					<tr>
+						<th>로그 경로</th>
+						<td class="form-group">
+							<input id="addInput2" class="form-control" type="text" placeholder="D:\data\data.log">
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+				<button type="button" class="btn btn-primary" onClick="addServer()">등록</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="putModal" tabindex="-1" aria-labelledby="putModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="putModalLabel">서버 수정하기</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<table class="table table-borderless">
+					<tr>
+						<th>서버명</th>
+						<td class="form-group">
+							<input id="putInput1" class="form-control" type="text">
+						</td>
+					</tr>
+					<tr>
+						<th>로그 경로</th>
+						<td class="form-group">
+							<input id="putInput2" class="form-control" type="text">
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+				<button type="button" class="btn btn-primary" onClick="putServer()">등록</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	function addServer() {
+		let formData = new FormData();
+        formData.append("name", $("#addInput1").val());
+        formData.append("path", $("#addInput2").val());
+		$.ajax({
+			url: "/addServer",
+			type: "POST",
+			data: formData,
+			processData: false,
+			contentType: false,
+			success: function (result) {
+				console.log(result);
+			},
+			error: function (e) {
+				console.log(e.responseText);
+			}
+		}); 
+	}
+	function putServer() {
+		alert("서버 수정 테스트")
+	}
+
+</script>
