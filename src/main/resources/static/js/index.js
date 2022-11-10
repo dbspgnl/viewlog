@@ -1,3 +1,10 @@
+intervalFunction();
+setInterval(() => intervalFunction(),60000); // 1분마다 체크
+
+function intervalFunction() {
+	isRemoting();
+}
+
 function addServer() {
 	alert("등록 아직 미구현")
 }
@@ -25,7 +32,6 @@ function ssh() {
 	$.ajax({
 		url: "/ssh",
 		type: "GET",
-		// data: { bundleIndex: index },
 		success: function (result) {
 			console.log(result);
 		},
@@ -33,5 +39,22 @@ function ssh() {
 			console.log(e.responseText);
 		}
 	});  
+}
 
+function log() {
+	$.ajax({
+		url: "/log",
+		type: "GET",
+		success: function (result) {
+			result.forEach(element => {
+				$("#console_container").append(element);
+				$("#console_container").append('<br>');
+			});
+			let consoleUl = document.querySelector('#console_container');
+			consoleUl.scrollTop = consoleUl.scrollHeight;
+		},
+		error: function (e) {
+			console.log(e.responseText);
+		}
+	});  
 }

@@ -30,7 +30,7 @@
             <thead class="table-primary">
                 <th>상태</th>
                 <th>이름</th>
-                <th>마지막 업데이트</th>
+                <th>마지막 추적</th>
                 <th>새로고침</th>
                 <th>추적</th>
             </thead>
@@ -40,29 +40,33 @@
                     <td>SARMS_BATCT_SERVER</td>
                     <td>2022.10.22 14:55:22</td>
                     <td> <button class="btn btn-primary">새로고침</button></td>
-                    <td> <button class="btn btn-secondary">시작</button></td>
+                    <td> 
+                        <button class="btn btn-secondary">시작</button>
+                        <button class="btn btn-secondary">설정</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
         <div class="card">
             <div class="m-3 row justify-content-between">
                 <div class="col-4" style="display: flex; align-items: center">SARMS_BATCT_SERVER</div>
-                <div class="col-4 text-end">
+                <!-- <div class="col-4 text-end">
                     <button class="btn btn-primary">
                         추적중
                     </button>
                     <button class="btn btn-secondary">
                         설정
                     </button>
-                </div>
+                </div> -->
             </div>
-            <div class="card mx-3 mb-3" style="height: 500px; background-color: #252525; color: seagreen;">
+            <div id="console_container" class="card mx-3 mb-3">
                 # root: hello world!
             </div>
         </div>
         <hr>
         <button class="btn btn-primary" onclick="isRemoting()">isRemoting</button>
         <button class="btn btn-primary" onclick="ssh()">ssh</button>
+        <button class="btn btn-primary" onclick="log()">log</button>
     </div>
 </body>
 </html>

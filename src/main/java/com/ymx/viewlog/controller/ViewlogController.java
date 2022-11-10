@@ -38,6 +38,11 @@ public class ViewlogController {
     @RequestMapping("/ssh")
     public ResponseEntity<?> ssh(){
         return ResponseEntity.status(HttpStatus.OK).body(viewlogService.ssh());
+
+    }
+    @RequestMapping("/log")
+    public ResponseEntity<?> log(){
+        return ResponseEntity.status(HttpStatus.OK).body(viewlogService.log());
     }
     
 }

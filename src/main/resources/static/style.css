@@ -1,3 +1,9 @@
 body {
     margin: 0;
 }
+#console_container{
+    height: 500px; 
+    background-color: #252525; 
+    color: seagreen;
+    overflow: auto;
+}
