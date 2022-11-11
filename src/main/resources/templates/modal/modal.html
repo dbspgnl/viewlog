@@ -74,6 +74,27 @@
 	</div>
 </div>
 
+<div class="modal fade" id="intervalModal" tabindex="-1" aria-labelledby="intervalModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="intervalModalLabel">인터벌 변경</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div><span>현재 인터벌: </span><span id="intervalView">1분</span></div>
+				<div>
+					<button type="button" class="btn btn-primary" onClick="changeInterval(10000)">10초</button>
+					<button type="button" class="btn btn-primary" onClick="changeInterval(30000)">30초</button>
+					<button type="button" class="btn btn-primary" onClick="changeInterval(60000)">1분</button>
+					<button type="button" class="btn btn-primary" onClick="changeInterval(180000)">3분</button>
+					<button type="button" class="btn btn-primary" onClick="changeInterval(300000)">5분</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <script>
 	function addServer() {
 		let formData = new FormData();
@@ -118,5 +139,5 @@
 			}
 		});
 	}
-
+	
 </script>

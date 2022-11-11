@@ -24,9 +24,9 @@
             </div>
             <div class="col-4 text-end">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">등록</button>
-                <button type="button" class="btn btn-primary" >접속 체크</button>
-                <button type="button" class="btn btn-primary" >인터벌</button>
-                <button type="button" class="btn btn-primary" >서버 구동 확인</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#intervalModal">인터벌</button>
+                <button type="button" class="btn btn-primary" onClick="isRemoting()">원격🔄</button>
+                <button type="button" class="btn btn-primary" onClick="isRunServer()">서버🔄</button>
             </div>
         </div>
         <table class="table table-sm text-center" style="vertical-align: middle;">
@@ -40,26 +40,12 @@
         </table>
         <div class="card">
             <div class="m-3 row justify-content-between">
-                <div id="console_title" class="col-4" style="display: flex; align-items: center">Server Name</div>
-                <!-- <div class="col-4 text-end">
-                    <button class="btn btn-primary">
-                        추적중
-                    </button>
-                    <button class="btn btn-secondary">
-                        설정
-                    </button>
-                </div> -->
+                Server Name
             </div>
             <div id="console_container" class="card mx-3 mb-3">
-                # root: hello world!
+                # server: ready to start console!
             </div>
         </div>
-        <hr>
-        <button class="btn btn-primary" onclick="isRemoting()">isRemoting</button>
-        <button class="btn btn-primary" onclick="ssh()">ssh</button>
-        <button class="btn btn-primary" onclick="log()">log</button>
-        <button class="btn btn-primary" onclick="getServerList()">Server</button>
-        <button class="btn btn-primary" onclick="isRunServer()">isRunServer</button>
     </div>
     <th:block aria-label="모달 영역" th:include="modal/modal"></th:block>
 </body>

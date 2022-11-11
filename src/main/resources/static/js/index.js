@@ -1,5 +1,10 @@
 intervalFunction();
-setInterval(() => intervalFunction(),60000); // 1분마다 체크
+let perTime = 60000; // 1분
+doInterval();
+
+function doInterval() {
+	setInterval(() => intervalFunction(),perTime);
+}
 
 function intervalFunction() {
 	isRemoting();
@@ -21,37 +26,6 @@ function isRemoting() {
 		error: function (e) {
 			console.log(e.responseText);
 			$("#isRemotingSpan").text("❌108 서버 접속불가");
-		}
-	});  
-}
-
-function ssh() { // 테스트
-	$.ajax({
-		url: "/ssh",
-		type: "GET",
-		success: function (result) {
-			console.log(result);
-		},
-		error: function (e) {
-			console.log(e.responseText);
-		}
-	});  
-}
-
-function log() { // 테스트
-	$.ajax({
-		url: "/log",
-		type: "GET",
-		success: function (result) {
-			result.forEach(element => {
-				$("#console_container").append(element);
-				$("#console_container").append('<br>');
-			});
-			let consoleUl = document.querySelector('#console_container');
-			consoleUl.scrollTop = consoleUl.scrollHeight;
-		},
-		error: function (e) {
-			console.log(e.responseText);
 		}
 	});  
 }
@@ -122,4 +96,31 @@ function openPutModal(index, name, logPath, port) {
 	$("#putInput2").val(logPath);
 	$("#putInput3").val(port);
 	$("#putModal").modal("show");
+}
+
+function changeInterval(time) {
+	perTime = time;
+	doInterval();
+	let intervalStr = "";
+	switch (time) {
+		case 10000:
+			intervalStr = "10초"
+			break;
+		case 30000:
+			intervalStr = "30초"
+			break;
+		case 60000:
+			intervalStr = "1분"
+			break;
+		case 180000:
+			intervalStr = "3분"
+			break;
+		case 300000:
+			intervalStr = "5분"
+			break;
+		default:
+			break;
+	}
+	$("#intervalView").text(intervalStr);
+	$("#intervalModal").modal("hide");
 }
