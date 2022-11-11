@@ -18,6 +18,8 @@ function isRemoting() {
 		success: function (result) {
 			if(result){
 				$("#isRemotingSpan").text("🔴108 서버 사용중...");
+			} else if(result == null) {
+				$("#isRemotingSpan").text("❌108 서버 접속불가");
 			}
 			else{
 				$("#isRemotingSpan").text("🟢108 서버 사용가능");

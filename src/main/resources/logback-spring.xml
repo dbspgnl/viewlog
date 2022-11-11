@@ -19,12 +19,12 @@
 
     <springProfile name="file-logging">
         <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <file>${LOG_PATH}/logback_${dailyLog}.log</file>
+            <file>${LOG_PATH}/viewlog/logback_${dailyLog}.log</file>
             <encoder>
                 <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %-5level %logger{35} - %msg%n</pattern>
             </encoder>
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-                <fileNamePattern>${LOG_PATH}/backup/logback_${dailyLog}.%d\(.%i\).log</fileNamePattern>
+                <fileNamePattern>${LOG_PATH}/viewlog/backup/logback_${dailyLog}.%d\(.%i\).log</fileNamePattern>
                 <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                     <maxFileSize>100MB</maxFileSize>
                 </timeBasedFileNamingAndTriggeringPolicy>
