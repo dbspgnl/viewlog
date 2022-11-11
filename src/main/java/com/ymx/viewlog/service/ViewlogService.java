@@ -125,14 +125,13 @@ public class ViewlogService {
     }
 
 	public Object addServer(Map<String, String> formData) {
-        System.out.println(formData);
-        System.out.println(formData.get("name"));
-        System.out.println(formData.get("path"));
+        log.info("addServer > name: " + formData.get("name") + " path: " + formData.get("path"), " port: " + formData.get("port"));
         Server server = Server.builder()
             .status(0)
             .name(formData.get("name"))
             .logPath(formData.get("path"))
             .date(new Timestamp(System.currentTimeMillis()))
+            .port(formData.get("port"))
             .build();
         serverRepository.save(server);
 		return null;
@@ -143,7 +142,6 @@ public class ViewlogService {
     }
 
     public Object getConsoleLog(Integer index) {
-        System.out.println(index);
         Optional<Server> serverOpt = serverRepository.findById(index);
         if(!serverOpt.isPresent()) return null;
         Server server = serverOpt.get();
@@ -161,6 +159,56 @@ public class ViewlogService {
             log.error(e.getMessage());
         }
         return list;
+    }
+
+	public Object isRunServer() {
+        String line = null;
+        // List<String> list = new ArrayList<String>();
+        List<Server> serverList = serverRepository.findAll();
+        try {
+            for (Server server : serverList) {
+                Integer isRunning = 0;
+                jschSendCommand("netstat -ano | findstr "+server.getPort());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
+                while ((line = reader.readLine()) != null) 
+                {	
+                    if(line.contains("[K")) continue;
+                    if(line.contains("LISTENING")) isRunning = 1;
+                    // list.add(line);
+                }
+                if(server.getStatus() != isRunning){ // 서버 상태와 체크 상태가 다르면 갱신해줌
+                    Server newServer = Server.builder()
+                        .index(server.getIndex())
+                        .status(isRunning)
+                        .name(server.getName())
+                        .logPath(server.getLogPath())
+                        .date(new Timestamp(System.currentTimeMillis()))
+                        .port(server.getPort())
+                        .build();
+                    serverRepository.save(newServer);
+                }
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return null;
+	}
+
+    public String putServer(Map<String, String> formData) {
+        log.info("putServer > name: " + formData.get("name") + " path: " + formData.get("path"), " port: " + formData.get("port"));
+        Optional<Server> serverOpt = serverRepository.findById(Integer.parseInt(formData.get("index")));
+        if(!serverOpt.isPresent()) return null;
+        Server server = serverOpt.get();
+        Server newServer = Server.builder()
+            .index(server.getIndex())
+            .status(server.getStatus())
+            .name(formData.get("name"))
+            .logPath(formData.get("path"))
+            .date(new Timestamp(System.currentTimeMillis()))
+            .port(formData.get("port"))
+            .build();
+        serverRepository.save(newServer);
+        return "수정 완료";
     }
 	
 }

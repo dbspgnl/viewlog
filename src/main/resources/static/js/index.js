@@ -3,7 +3,7 @@ setInterval(() => intervalFunction(),60000); // 1분마다 체크
 
 function intervalFunction() {
 	isRemoting();
-	getServerList();
+	isRunServer();
 }
 
 function isRemoting() {
@@ -80,17 +80,17 @@ function getServerList() {
 		url: "/getServerList",
 		type: "GET",
 		success: function (result) {
-			$("tbody").empty();
+			$("#serverListTbody").empty();
 			result.forEach(element => {
-				$("tbody").append(`
+				const server = JSON.stringify(element).toString();
+				$("#serverListTbody").append(`
 					<tr>
-						<td>${element.start == 1 ? '🟢':'🔴'}</td>
+						<td>${element.status == 1 ? '🟢':'🔴'}</td>
 						<td>${element.name}</td>
 						<td>${new Date(element.date).toLocaleString()}</td>
-						<td> <button class="btn btn-primary">새로고침</button></td>
 						<td> 
 							<button class="btn btn-secondary" onclick="getConsoleLog(${element.index}, '${element.name}')">시작</button>
-							<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#putModal">설정</button>
+							<button type="button" class="btn btn-secondary" onClick="openPutModal(${element.index}, '${element.name}', '${element.logPath}', '${element.port}')">설정</button>
 						</td>
 					</tr>
 				`);
@@ -101,4 +101,25 @@ function getServerList() {
 			console.log(e.responseText);
 		}
 	});  
+}
+
+function isRunServer() { 
+	$.ajax({
+		url: "/isRunServer",
+		type: "GET",
+		success: function (result) {
+			getServerList();
+		},
+		error: function (e) {
+			console.log(e.responseText);
+		}
+	});  
+}
+
+function openPutModal(index, name, logPath, port) {
+	$("#putInput0").val(index);
+	$("#putInput1").val(name);
+	$("#putInput2").val(logPath);
+	$("#putInput3").val(port);
+	$("#putModal").modal("show");
 }

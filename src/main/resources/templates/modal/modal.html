@@ -7,7 +7,7 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<table class="table table-borderless">
+				<table class="table table-borderless align-middle">
 					<tr>
 						<th>서버명</th>
 						<td class="form-group">
@@ -18,6 +18,12 @@
 						<th>로그 경로</th>
 						<td class="form-group">
 							<input id="addInput2" class="form-control" type="text" placeholder="D:\data\data.log">
+						</td>
+					</tr>
+					<tr>
+						<th>포트</th>
+						<td class="form-group">
+							<input id="addInput3" class="form-control" type="text" placeholder="8080">
 						</td>
 					</tr>
 				</table>
@@ -38,7 +44,8 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<table class="table table-borderless">
+				<input id="putInput0" type="hidden">
+				<table class="table table-borderless align-middle">
 					<tr>
 						<th>서버명</th>
 						<td class="form-group">
@@ -49,6 +56,12 @@
 						<th>로그 경로</th>
 						<td class="form-group">
 							<input id="putInput2" class="form-control" type="text">
+						</td>
+					</tr>
+					<tr>
+						<th>포트</th>
+						<td class="form-group">
+							<input id="putInput3" class="form-control" type="text">
 						</td>
 					</tr>
 				</table>
@@ -66,6 +79,7 @@
 		let formData = new FormData();
         formData.append("name", $("#addInput1").val());
         formData.append("path", $("#addInput2").val());
+        formData.append("port", $("#addInput3").val());
 		$.ajax({
 			url: "/addServer",
 			type: "POST",
@@ -74,14 +88,35 @@
 			contentType: false,
 			success: function (result) {
 				console.log(result);
+				$("#addModal").modal("hide"); 
 			},
 			error: function (e) {
 				console.log(e.responseText);
+				$("#addModal").modal("hide"); 
 			}
 		}); 
 	}
 	function putServer() {
-		alert("서버 수정 테스트")
+		let formData = new FormData();
+        formData.append("index", $("#putInput0").val());
+        formData.append("name", $("#putInput1").val());
+        formData.append("path", $("#putInput2").val());
+        formData.append("port", $("#putInput3").val());
+		$.ajax({
+			url: "/putServer",
+			type: "PUT",
+			data: formData,
+			processData: false,
+			contentType: false,
+			success: function (result) {
+				getServerList();
+				$("#putModal").modal("hide"); 
+			},
+			error: function (e) {
+				console.log(e.responseText);
+				$("#putModal").modal("hide"); 
+			}
+		});
 	}
 
 </script>

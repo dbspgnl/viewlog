@@ -23,5 +23,6 @@ public class Server {
 	private String name;
 	private String logPath;
 	private Timestamp date;
+	private String port;
 	
 }

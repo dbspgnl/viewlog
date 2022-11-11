@@ -16,25 +16,27 @@
 <body>
     <div class="container">
         <div class="m-1 row justify-content-between">
-            <div class="col-8">
+            <div class="col-4">
                 <h3>Viewlog</h3>
             </div>
-            <div class="col-3" style="display: flex; align-items: center; flex-direction: row-reverse;">
+            <div class="col-4 text-end" style="display: flex; align-items: center; flex-direction: row-reverse;">
                 <span id="isRemotingSpan">대기중</span>
             </div>
-            <div class="col-1 text-end">
+            <div class="col-4 text-end">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">등록</button>
+                <button type="button" class="btn btn-primary" >접속 체크</button>
+                <button type="button" class="btn btn-primary" >인터벌</button>
+                <button type="button" class="btn btn-primary" >서버 구동 확인</button>
             </div>
         </div>
-        <table class="table" style="vertical-align: middle;">
+        <table class="table table-sm text-center" style="vertical-align: middle;">
             <thead class="table-primary">
                 <th>상태</th>
                 <th>이름</th>
                 <th>마지막 추적</th>
-                <th>새로고침</th>
                 <th>추적</th>
             </thead>
-            <tbody></tbody>
+            <tbody id="serverListTbody"></tbody>
         </table>
         <div class="card">
             <div class="m-3 row justify-content-between">
@@ -57,6 +59,7 @@
         <button class="btn btn-primary" onclick="ssh()">ssh</button>
         <button class="btn btn-primary" onclick="log()">log</button>
         <button class="btn btn-primary" onclick="getServerList()">Server</button>
+        <button class="btn btn-primary" onclick="isRunServer()">isRunServer</button>
     </div>
     <th:block aria-label="모달 영역" th:include="modal/modal"></th:block>
 </body>

@@ -42,29 +42,40 @@ public class ViewlogController {
     @RequestMapping("/ssh")
     public ResponseEntity<?> ssh(){
         return ResponseEntity.status(HttpStatus.OK).body(viewlogService.ssh());
-
     }
 
     @RequestMapping("/log")
     public ResponseEntity<?> log(){
         return ResponseEntity.status(HttpStatus.OK).body(viewlogService.log());
     }
-
+    
     @RequestMapping("/getConsoleLog/{index}")
     public ResponseEntity<?> getConsoleLog(@PathVariable("index") Integer index){
         Object logList = viewlogService.getConsoleLog(index);
         if(logList == null) return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("데이터 없음");
         else return ResponseEntity.status(HttpStatus.OK).body(logList);
     }
-
+    
     @RequestMapping("/getServerList")
     public ResponseEntity<?> getServer(){
         return ResponseEntity.status(HttpStatus.OK).body(viewlogService.getServerList());
     }
-
+    
     @RequestMapping("/addServer")
     public ResponseEntity<?> addServer(@RequestParam Map<String, String> formData){
         return ResponseEntity.status(HttpStatus.OK).body(viewlogService.addServer(formData));
     }
     
+    @RequestMapping("/isRunServer")
+    public ResponseEntity<?> isRunServer(){
+        return ResponseEntity.status(HttpStatus.OK).body(viewlogService.isRunServer());
+    }
+
+    @RequestMapping("/putServer")
+    public ResponseEntity<?> putServer(@RequestParam Map<String, String> formData){
+        String putResult = viewlogService.putServer(formData);
+        if(putResult == null) return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("데이터 없음");
+        else return ResponseEntity.status(HttpStatus.OK).body(putResult);
+    }
+
 }
