@@ -16,18 +16,20 @@ function isRemoting() {
 		url: "/isRemoting",
 		type: "GET",
 		success: function (result) {
-			if(result){
-				$("#isRemotingSpan").text("🔴108 서버 사용중...");
+			if(result.result && result.host != "127.0.0.1"){
+				$("#isRemotingSpan").text("🔴"+result.host+" 원격중...");
 			} else if(result == null) {
-				$("#isRemotingSpan").text("❌108 서버 접속불가");
-			}
-			else{
-				$("#isRemotingSpan").text("🟢108 서버 사용가능");
+				$("#isRemotingSpan").text("❌서버 접속불가");
+			} else if(!result.result && result.host != "127.0.0.1"){
+				$("#isRemotingSpan").text("🟢"+result.host+" 사용가능");
+			} else {
+				console.log(result);
+				$("#isRemotingSpan").text("대기중...");
 			}
 		},
 		error: function (e) {
 			console.log(e.responseText);
-			$("#isRemotingSpan").text("❌108 서버 접속불가");
+			$("#isRemotingSpan").text("❌서버 접속불가");
 		}
 	});  
 }

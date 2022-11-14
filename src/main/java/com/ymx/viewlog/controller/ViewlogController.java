@@ -34,9 +34,7 @@ public class ViewlogController {
 
     @RequestMapping("/isRemoting")
     public ResponseEntity<?> isRemoting(){
-        Boolean result = false;
-        result = viewlogService.isRemoting();
-        return ResponseEntity.status(HttpStatus.OK).body(result);
+        return ResponseEntity.status(HttpStatus.OK).body(viewlogService.isRemoting());
     }
 
     @RequestMapping("/ssh")

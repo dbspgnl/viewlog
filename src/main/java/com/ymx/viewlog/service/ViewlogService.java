@@ -4,21 +4,25 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.jcraft.jsch.*;
 import com.ymx.viewlog.entity.Server;
 import com.ymx.viewlog.repository.ServerRepository;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@Getter
 public class ViewlogService {
 
     @Autowired
@@ -33,10 +37,14 @@ public class ViewlogService {
     Session session = null;
     Channel channel = null;
 
-    public ViewlogService() {
-        host = System.getProperty("ssh.host");
-        username = System.getProperty("ssh.name");
-        password = System.getProperty("ssh.pw");
+    public ViewlogService(
+        @Value("${ssh.host}") String host,
+        @Value("${ssh.name}") String username,
+        @Value("${ssh.pw}") String password
+    ) {
+        this.host = host;
+        this.username = username;
+        this.password = password;
         try {
             System.out.println(host);
             session = jsch.getSession(username, host, port);
@@ -72,7 +80,8 @@ public class ViewlogService {
         return sb.toString();
     }
 
-	public Boolean isRemoting() {
+	public Map<String, Object> isRemoting() {
+        Map<String, Object> map = new HashMap<String, Object>();
 		Boolean result = false;
         String line = null;
         StringBuffer sb = new StringBuffer();
@@ -90,7 +99,9 @@ public class ViewlogService {
         } catch (Exception e) {
             log.error(e.getMessage());
         } 
-		return result;
+        map.put("result", result);
+        map.put("host", host);
+		return map;
 	}
 
     private Channel jschSendCommand(String command){
@@ -112,7 +123,7 @@ public class ViewlogService {
         List<String> list = new ArrayList<String>();
         try {
             jschSendCommand("mode con:cols=400 lines=20 & type D:\\jenkins\\mxspace_yt_prod\\workspace\\MXWorksWebBack_Prod\\log_prod\\mxspace_web_back.log");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(channel.getInputStream(), "UTF-8"));
             while ((line = reader.readLine()) != null) 
             {	
                 if(line.contains("[K")) continue;
