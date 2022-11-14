@@ -46,7 +46,6 @@ public class ViewlogService {
         this.username = username;
         this.password = password;
         try {
-            System.out.println(host);
             session = jsch.getSession(username, host, port);
             session.setPassword(password);
             java.util.Properties config = new java.util.Properties();
@@ -58,10 +57,23 @@ public class ViewlogService {
         }
     }
 
-    // private void jschDisconnect(){ // 세션 종료
-    //     if (channel != null) channel.disconnect();
-    //     if (session != null) session.disconnect();
-    // }
+    private void jschConnect(){ // 세션 시작
+        try {
+            session = jsch.getSession(username, host, port);
+            session.setPassword(password);
+            java.util.Properties config = new java.util.Properties();
+            config.put("StrictHostKeyChecking", "no");
+            session.setConfig(config);
+            session.connect();
+        } catch (JSchException e) {
+            log.error(e.getMessage());
+        }
+    }
+
+    private void jschDisconnect(){ // 세션 종료
+        if (channel != null) channel.disconnect();
+        if (session != null) session.disconnect();
+    }
 
 	public String ssh(){
         String line = null;
@@ -86,6 +98,7 @@ public class ViewlogService {
         String line = null;
         StringBuffer sb = new StringBuffer();
         try {
+            jschConnect();
             jschSendCommand("tasklist | findstr svc");
             BufferedReader reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
             while ((line = reader.readLine()) != null) 
@@ -98,7 +111,9 @@ public class ViewlogService {
             }
         } catch (Exception e) {
             log.error(e.getMessage());
-        } 
+        } finally{
+            jschDisconnect();
+        }
         map.put("result", result);
         map.put("host", host);
 		return map;
@@ -159,6 +174,7 @@ public class ViewlogService {
         String line = null;
         List<String> list = new ArrayList<String>();
         try {
+            jschConnect();
             jschSendCommand("mode con:cols=400 lines=20 & type "+server.getLogPath());
             BufferedReader reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
             while ((line = reader.readLine()) != null) 
@@ -168,15 +184,17 @@ public class ViewlogService {
             }
         } catch (Exception e) {
             log.error(e.getMessage());
+        } finally{
+            jschDisconnect();
         }
         return list;
     }
 
 	public Object isRunServer() {
         String line = null;
-        // List<String> list = new ArrayList<String>();
         List<Server> serverList = serverRepository.findAll();
         try {
+            jschConnect();
             for (Server server : serverList) {
                 Integer isRunning = 0;
                 jschSendCommand("netstat -ano | findstr "+server.getPort());
@@ -201,6 +219,8 @@ public class ViewlogService {
             }
         } catch (Exception e) {
             log.error(e.getMessage());
+        } finally{
+            jschDisconnect();
         }
         return null;
 	}
