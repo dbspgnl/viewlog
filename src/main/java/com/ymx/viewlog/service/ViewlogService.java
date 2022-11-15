@@ -92,13 +92,45 @@ public class ViewlogService {
         return sb.toString();
     }
 
-	public Map<String, Object> isRemoting() {
+    // isRunServer() & isRemoting() 하나의 세트로 isRunServer에서 connect하고 isRemoting에서 disconnect한다.
+    public Object isRunServer() { // isRunServer() & isRemoting() 
+        String line = null;
+        List<Server> serverList = serverRepository.findAll();
+        try {
+            jschConnect();
+            for (Server server : serverList) {
+                Integer isRunning = 0;
+                jschSendCommand("netstat -ano | findstr "+server.getPort());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
+                while ((line = reader.readLine()) != null) 
+                {	
+                    if(line.contains("[K")) continue;
+                    if(line.contains("LISTENING")) isRunning = 1;
+                }
+                if(server.getStatus() != isRunning){ // 서버 상태와 체크 상태가 다르면 갱신해줌
+                    Server newServer = Server.builder()
+                        .index(server.getIndex())
+                        .status(isRunning)
+                        .name(server.getName())
+                        .logPath(server.getLogPath())
+                        .date(new Timestamp(System.currentTimeMillis()))
+                        .port(server.getPort())
+                        .build();
+                    serverRepository.save(newServer);
+                }
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        } 
+        return null;
+	}
+
+	public Map<String, Object> isRemoting() { // isRunServer() & isRemoting() 
         Map<String, Object> map = new HashMap<String, Object>();
 		Boolean result = false;
         String line = null;
         StringBuffer sb = new StringBuffer();
         try {
-            jschConnect();
             jschSendCommand("tasklist | findstr svc");
             BufferedReader reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
             while ((line = reader.readLine()) != null) 
@@ -189,41 +221,6 @@ public class ViewlogService {
         }
         return list;
     }
-
-	public Object isRunServer() {
-        String line = null;
-        List<Server> serverList = serverRepository.findAll();
-        try {
-            jschConnect();
-            for (Server server : serverList) {
-                Integer isRunning = 0;
-                jschSendCommand("netstat -ano | findstr "+server.getPort());
-                BufferedReader reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
-                while ((line = reader.readLine()) != null) 
-                {	
-                    if(line.contains("[K")) continue;
-                    if(line.contains("LISTENING")) isRunning = 1;
-                    // list.add(line);
-                }
-                if(server.getStatus() != isRunning){ // 서버 상태와 체크 상태가 다르면 갱신해줌
-                    Server newServer = Server.builder()
-                        .index(server.getIndex())
-                        .status(isRunning)
-                        .name(server.getName())
-                        .logPath(server.getLogPath())
-                        .date(new Timestamp(System.currentTimeMillis()))
-                        .port(server.getPort())
-                        .build();
-                    serverRepository.save(newServer);
-                }
-            }
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        } finally{
-            jschDisconnect();
-        }
-        return null;
-	}
 
     public String putServer(Map<String, String> formData) {
         log.info("putServer > name: " + formData.get("name") + " path: " + formData.get("path"), " port: " + formData.get("port"));

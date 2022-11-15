@@ -1,14 +1,51 @@
-intervalFunction();
 let perTime = 60000; // 1분
+// setTimeout(() => {
+// 	isRemoting();
+// }, 3000);
+// btnToggle();
+// doInterval();
+// let isInit = false;
+// if(isInit == false) { 
+// 	console.log(isInit);
+// 	btnToggle(); 
+// 	intervalFunction(); 
+// 	doInterval();
+// 	isInit = true;
+// }
+intervalFunction();
 doInterval();
 
 function doInterval() {
-	setInterval(() => intervalFunction(),perTime);
+	setInterval(() => intervalFunction(), perTime);
 }
 
 function intervalFunction() {
-	isRemoting();
 	isRunServer();
+	// isRemoting();
+}
+
+function doReload(){
+	btnToggle();
+	intervalFunction();
+}
+
+function btnToggle() {
+	$("#btn-running").toggle();
+	$("#btn-reload").toggle();
+}
+
+function isRunServer() { 
+	$.ajax({
+		url: "/isRunServer",
+		type: "GET",
+		success: function (result) {
+			getServerList();
+			isRemoting();
+		},
+		error: function (e) {
+			console.log(e.responseText);
+		}
+	});  
 }
 
 function isRemoting() {
@@ -26,10 +63,38 @@ function isRemoting() {
 				console.log(result);
 				$("#isRemotingSpan").text("대기중...");
 			}
+			btnToggle();
 		},
 		error: function (e) {
 			console.log(e.responseText);
 			$("#isRemotingSpan").text("❌서버 접속불가");
+			btnToggle();
+		}
+	});  
+}
+
+function getServerList() {
+	$.ajax({
+		url: "/getServerList",
+		type: "GET",
+		success: function (result) {
+			$("#serverListTbody").empty();
+			result.forEach(element => {
+				$("#serverListTbody").append(`
+					<tr>
+						<td>${element.status == 1 ? '🟢':'🔴'}</td>
+						<td>${element.name}</td>
+						<td>${new Date(element.date).toLocaleString()}</td>
+						<td> 
+							<button class="btn btn-secondary" onclick="getConsoleLog(${element.index}, '${element.name}')">시작</button>
+							<button type="button" class="btn btn-secondary" onClick="openPutModal(${element.index}, '${element.name}', '${element.logPath}', '${element.port}')">설정</button>
+						</td>
+					</tr>
+				`);
+			});
+		},
+		error: function (e) {
+			console.log(e.responseText);
 		}
 	});  
 }
@@ -46,47 +111,6 @@ function getConsoleLog(index, name) {
 			let consoleUl = document.querySelector('#console_container');
 			consoleUl.scrollTop = consoleUl.scrollHeight;
 			$("#console_title").text(name);
-		},
-		error: function (e) {
-			console.log(e.responseText);
-		}
-	});  
-}
-
-function getServerList() {
-	$.ajax({
-		url: "/getServerList",
-		type: "GET",
-		success: function (result) {
-			$("#serverListTbody").empty();
-			result.forEach(element => {
-				const server = JSON.stringify(element).toString();
-				$("#serverListTbody").append(`
-					<tr>
-						<td>${element.status == 1 ? '🟢':'🔴'}</td>
-						<td>${element.name}</td>
-						<td>${new Date(element.date).toLocaleString()}</td>
-						<td> 
-							<button class="btn btn-secondary" onclick="getConsoleLog(${element.index}, '${element.name}')">시작</button>
-							<button type="button" class="btn btn-secondary" onClick="openPutModal(${element.index}, '${element.name}', '${element.logPath}', '${element.port}')">설정</button>
-						</td>
-					</tr>
-				`);
-			});
-			
-		},
-		error: function (e) {
-			console.log(e.responseText);
-		}
-	});  
-}
-
-function isRunServer() { 
-	$.ajax({
-		url: "/isRunServer",
-		type: "GET",
-		success: function (result) {
-			getServerList();
 		},
 		error: function (e) {
 			console.log(e.responseText);

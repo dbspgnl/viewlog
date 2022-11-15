@@ -7,3 +7,28 @@ body {
     color: seagreen;
     overflow: auto;
 }
+
+/* 스피너 */
+/* .spinner-border {
+    z-index:9001;
+    width: 5rem;
+    height: 5rem;
+    opacity: 50%;
+}
+.spinner-position {
+    position: absolute;
+    top: 40%;
+    left: 46%;
+}
+
+.spinner-overray {
+    display:none;
+}
+.spinner-overray::after {
+    content:'';
+    display:block;
+    position:absolute;
+    z-index:9000;
+    left:0;right:0;top:0;bottom:0;
+    background-color: rgba(255,255,255,0.7);
+} */

@@ -16,17 +16,23 @@
 <body>
     <div class="container">
         <div class="m-1 row justify-content-between">
-            <div class="col-4">
-                <h3>Viewlog</h3>
+            <div class="col-4 fs-3 fw-bold">
+                Viewlog
             </div>
             <div class="col-4 text-end" style="display: flex; align-items: center; flex-direction: row-reverse;">
                 <span id="isRemotingSpan">대기중</span>
             </div>
             <div class="col-4 text-end">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">등록</button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#intervalModal">인터벌</button>
-                <button type="button" class="btn btn-primary" onClick="isRemoting()">원격🔄</button>
-                <button type="button" class="btn btn-primary" onClick="isRunServer()">서버🔄</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Register</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#intervalModal">Interval</button>
+                <button id="btn-running" class="btn btn-primary" type="button" onClick="doReload()" style="display: none;">
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    Running
+                </button>
+                <button id="btn-reload" class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Reload
+                </button>
             </div>
         </div>
         <table class="table table-sm text-center" style="vertical-align: middle;">
@@ -48,5 +54,12 @@
         </div>
     </div>
     <th:block aria-label="모달 영역" th:include="modal/modal"></th:block>
+    <!-- <div aria-label="스피너 영역" class="spinner-overray">
+        <div class="d-flex justify-content-center spinner-position">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div> -->
 </body>
 </html>
