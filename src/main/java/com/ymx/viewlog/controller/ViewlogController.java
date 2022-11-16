@@ -36,16 +36,6 @@ public class ViewlogController {
     public ResponseEntity<?> isRemoting(){
         return ResponseEntity.status(HttpStatus.OK).body(viewlogService.isRemoting());
     }
-
-    @RequestMapping("/ssh")
-    public ResponseEntity<?> ssh(){
-        return ResponseEntity.status(HttpStatus.OK).body(viewlogService.ssh());
-    }
-
-    @RequestMapping("/log")
-    public ResponseEntity<?> log(){
-        return ResponseEntity.status(HttpStatus.OK).body(viewlogService.log());
-    }
     
     @RequestMapping("/getConsoleLog/{index}")
     public ResponseEntity<?> getConsoleLog(@PathVariable("index") Integer index){
@@ -74,6 +64,11 @@ public class ViewlogController {
         String putResult = viewlogService.putServer(formData);
         if(putResult == null) return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("데이터 없음");
         else return ResponseEntity.status(HttpStatus.OK).body(putResult);
+    }
+
+    @RequestMapping("/startUp")
+    public ResponseEntity<?> startUp(@RequestParam Map<String, String> formData){
+        return ResponseEntity.status(HttpStatus.OK).body(viewlogService.startUp(formData));
     }
 
 }

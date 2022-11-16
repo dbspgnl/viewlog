@@ -1,17 +1,5 @@
 let perTime = 60000; // 1분
-// setTimeout(() => {
-// 	isRemoting();
-// }, 3000);
-// btnToggle();
-// doInterval();
-// let isInit = false;
-// if(isInit == false) { 
-// 	console.log(isInit);
-// 	btnToggle(); 
-// 	intervalFunction(); 
-// 	doInterval();
-// 	isInit = true;
-// }
+
 intervalFunction();
 doInterval();
 
@@ -21,7 +9,6 @@ function doInterval() {
 
 function intervalFunction() {
 	isRunServer();
-	// isRemoting();
 }
 
 function doReload(){
@@ -86,8 +73,9 @@ function getServerList() {
 						<td>${element.name}</td>
 						<td>${new Date(element.date).toLocaleString()}</td>
 						<td> 
-							<button class="btn btn-secondary" onclick="getConsoleLog(${element.index}, '${element.name}')">시작</button>
-							<button type="button" class="btn btn-secondary" onClick="openPutModal(${element.index}, '${element.name}', '${element.logPath}', '${element.port}')">설정</button>
+							<button class="btn btn-secondary" onclick="getConsoleLog(${element.index}, '${element.name}')">추적</button>
+							<button type="button" class="btn btn-secondary" onClick="openPutModal(${element.index}, '${element.name}', '${element.logPath}', '${element.port}', '${element.startPath}')">설정</button>
+							<button class="btn btn-secondary" onclick="startUp('${element.startPath}')">재시작</button>
 						</td>
 					</tr>
 				`);
@@ -118,11 +106,12 @@ function getConsoleLog(index, name) {
 	});  
 }
 
-function openPutModal(index, name, logPath, port) {
+function openPutModal(index, name, logPath, port, startPath) {
 	$("#putInput0").val(index);
 	$("#putInput1").val(name);
 	$("#putInput2").val(logPath);
 	$("#putInput3").val(port);
+	$("#putInput4").val(startPath);
 	$("#putModal").modal("show");
 }
 
@@ -151,4 +140,27 @@ function changeInterval(time) {
 	}
 	$("#intervalView").text(intervalStr);
 	$("#intervalModal").modal("hide");
+}
+
+function startUp(startPath) {
+	let formData = new FormData();
+	formData.append("startPath", startPath);
+	$.ajax({
+		url: "/startUp",
+		type: "POST",
+		data: formData,
+		processData: false,
+		contentType: false,
+		success: function (result) {
+			if(result == "실행 경로를 찾을 수 없습니다.") {
+				alert(result);
+			} else {
+				alert(result +" 서버를 재시작 했습니다.");
+			}
+			doReload();
+		},
+		error: function (e) {
+			console.log(e.responseText);
+		}
+	}); 
 }

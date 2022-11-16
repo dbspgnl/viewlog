@@ -11,9 +11,10 @@
     </springProfile>
     <springProfile name="console-logging">
 		<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-				<encoder>
-					<pattern>${consolePattern}</pattern>
-				</encoder>
+            <encoder>
+                <charset>UTF-8</charset>
+                <pattern>${consolePattern}</pattern>
+            </encoder>
 		</appender>
 	</springProfile>
 

@@ -26,6 +26,12 @@
 							<input id="addInput3" class="form-control" type="text" placeholder="8080">
 						</td>
 					</tr>
+					<tr>
+						<th>재시작 경로</th>
+						<td class="form-group">
+							<input id="addInput4" class="form-control" type="text" placeholder="D:\data\startup.bat">
+						</td>
+					</tr>
 				</table>
 			</div>
 			<div class="modal-footer">
@@ -64,11 +70,17 @@
 							<input id="putInput3" class="form-control" type="text">
 						</td>
 					</tr>
+					<tr>
+						<th>재시작 경로</th>
+						<td class="form-group">
+							<input id="putInput4" class="form-control" type="text">
+						</td>
+					</tr>
 				</table>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-				<button type="button" class="btn btn-primary" onClick="putServer()">등록</button>
+				<button type="button" class="btn btn-primary" onClick="putServer()">수정</button>
 			</div>
 		</div>
 	</div>
@@ -101,6 +113,7 @@
         formData.append("name", $("#addInput1").val());
         formData.append("path", $("#addInput2").val());
         formData.append("port", $("#addInput3").val());
+        formData.append("startPath", $("#addInput4").val());
 		$.ajax({
 			url: "/addServer",
 			type: "POST",
@@ -123,6 +136,7 @@
         formData.append("name", $("#putInput1").val());
         formData.append("path", $("#putInput2").val());
         formData.append("port", $("#putInput3").val());
+		formData.append("startPath", $("#putInput4").val());
 		$.ajax({
 			url: "/putServer",
 			type: "PUT",
