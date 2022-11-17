@@ -67,6 +67,7 @@ function getServerList() {
 		success: function (result) {
 			$("#serverListTbody").empty();
 			result.forEach(element => {
+				const logPath = element.logPath && element.logPath.replaceAll("\\", "\\\\");
 				$("#serverListTbody").append(`
 					<tr>
 						<td>${element.status == 1 ? '🟢':'🔴'}</td>
@@ -74,8 +75,7 @@ function getServerList() {
 						<td>${new Date(element.date).toLocaleString()}</td>
 						<td> 
 							<button class="btn btn-secondary" onclick="getConsoleLog(${element.index}, '${element.name}')">추적</button>
-							<button type="button" class="btn btn-secondary" onClick="openPutModal(${element.index}, '${element.name}', '${element.logPath}', '${element.port}', '${element.startPath}')">설정</button>
-							<button class="btn btn-secondary" onclick="startUp('${element.startPath}')">재시작</button>
+							<button type="button" class="btn btn-secondary" onClick="openPutModal(${element.index}, '${element.name}', '${logPath}', '${element.port}')">설정</button>
 						</td>
 					</tr>
 				`);
@@ -106,12 +106,11 @@ function getConsoleLog(index, name) {
 	});  
 }
 
-function openPutModal(index, name, logPath, port, startPath) {
+function openPutModal(index, name, logPath, port) {
 	$("#putInput0").val(index);
 	$("#putInput1").val(name);
 	$("#putInput2").val(logPath);
 	$("#putInput3").val(port);
-	$("#putInput4").val(startPath);
 	$("#putModal").modal("show");
 }
 

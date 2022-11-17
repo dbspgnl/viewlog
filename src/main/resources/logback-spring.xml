@@ -6,13 +6,8 @@
     <property name="consolePattern" value="[%green(%d{yyyy-MM-dd HH:mm:ss}:%-3relative)][%thread] %highlight(%-5level) %cyan(%logger{35}) - %msg%n" />
 
     <springProfile name="console-logging">
-        <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
-        <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
-    </springProfile>
-    <springProfile name="console-logging">
 		<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
             <encoder>
-                <charset>UTF-8</charset>
                 <pattern>${consolePattern}</pattern>
             </encoder>
 		</appender>

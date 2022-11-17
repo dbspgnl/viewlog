@@ -66,9 +66,4 @@ public class ViewlogController {
         else return ResponseEntity.status(HttpStatus.OK).body(putResult);
     }
 
-    @RequestMapping("/startUp")
-    public ResponseEntity<?> startUp(@RequestParam Map<String, String> formData){
-        return ResponseEntity.status(HttpStatus.OK).body(viewlogService.startUp(formData));
-    }
-
 }

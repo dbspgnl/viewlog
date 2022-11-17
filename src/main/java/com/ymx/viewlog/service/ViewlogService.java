@@ -151,17 +151,14 @@ public class ViewlogService {
 	public Object addServer(Map<String, String> formData) {
         log.info("addServer > name: " + formData.get("name") 
             + " path: " + formData.get("path") 
-            + " port: " + formData.get("port") 
-            + " startPath: " + formData.get("startPath"));
+            + " port: " + formData.get("port"));
         String logPath = formData.get("path");
-        String startPath = convertEscapePath(formData.get("startPath"));
         Server server = Server.builder()
             .status(0)
             .name(formData.get("name"))
             .logPath(logPath)
             .date(new Timestamp(System.currentTimeMillis()))
             .port(formData.get("port"))
-            .startPath(startPath)
             .build();
         serverRepository.save(server);
 		return null;
@@ -197,10 +194,8 @@ public class ViewlogService {
     public String putServer(Map<String, String> formData) {
         log.info("putServer > name: " + formData.get("name") 
             + " path: " + formData.get("path") 
-            + " port: " + formData.get("port") 
-            + " startPath: " + formData.get("startPath"));
+            + " port: " + formData.get("port")); 
         String logPath = formData.get("path");
-        String startPath =convertEscapePath(formData.get("startPath"));
         Optional<Server> serverOpt = serverRepository.findById(Integer.parseInt(formData.get("index")));
         if(!serverOpt.isPresent()) return null;
         Server server = serverOpt.get();
@@ -211,31 +206,9 @@ public class ViewlogService {
             .logPath(logPath)
             .date(new Timestamp(System.currentTimeMillis()))
             .port(formData.get("port"))
-            .startPath(startPath)
             .build();
         serverRepository.save(newServer);
         return "수정 완료";
-    }
-
-	public Object startUp(Map<String, String> formData) {
-        String startPath = formData.get("startPath");
-        Optional<Server> serverOpt = serverRepository.findByStartPath(startPath);
-        if(!serverOpt.isPresent()){
-            return "실행 경로를 찾을 수 없습니다.";
-        } else {
-            log.info(serverOpt.get().getName() + " 서버를 재시작하였습니다.");
-            try {
-                jschConnect();
-                jschSendCommand(startPath);
-            } catch (Exception e) {
-                log.error(e.getMessage());
-            }
-            return serverOpt.get().getName();
-        }
-	}
-
-    private String convertEscapePath(String path){
-        return path.replaceAll("\\\\", "/");
     }
 	
 }
