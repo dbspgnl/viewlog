@@ -66,4 +66,9 @@ public class ViewlogController {
         else return ResponseEntity.status(HttpStatus.OK).body(putResult);
     }
 
+    @RequestMapping("/test")
+    public ResponseEntity<?> test(){
+        return ResponseEntity.status(HttpStatus.OK).body("hello!");
+    }
+
 }
