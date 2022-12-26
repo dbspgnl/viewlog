@@ -28,6 +28,7 @@ public class ViewlogService {
     @Autowired
     private ServerRepository serverRepository;
 
+    private String osName;
 	private String host = "";
 	private String username = "";
 	private String password = "";
@@ -42,6 +43,12 @@ public class ViewlogService {
         @Value("${ssh.name}") String username,
         @Value("${ssh.pw}") String password
     ) {
+        osName = System.getProperty("os.name").toLowerCase();
+        if(osName.contains("windows")){            
+            osName = "windows";
+        } else {
+            osName = "linux";
+        }
         this.host = host;
         this.username = username;
         this.password = password;
@@ -176,7 +183,12 @@ public class ViewlogService {
         List<String> list = new ArrayList<String>();
         try {
             jschConnect();
-            jschSendCommand("mode con:cols=400 lines=20 & type "+server.getLogPath());
+            if(osName.equals("windows")){
+                jschSendCommand("mode con:cols=400 lines=20 & type "+server.getLogPath());
+            }
+            else{
+                jschSendCommand("tail -2000f "+server.getLogPath());
+            }
             BufferedReader reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
             while ((line = reader.readLine()) != null) 
             {	
